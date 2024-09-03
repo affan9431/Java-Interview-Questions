@@ -1,48 +1,69 @@
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class LongestSubString {
-
-    /**
-     * This method finds the length of the longest substring without repeating
-     * characters.
-     * It uses a sliding window approach with two pointers and a HashSet to track
-     * the characters.
+    /***
+     * Question: Longest Substring Without Repeating Characters.
+     * Owner name: Affan Sayeed
+     *  lengthOfLongestSubstring() is a  method which take input as a string and return the max_length string.
+     * Date: 3-9-2024
      */
-    public static void maxSubstring() {
-        String str;
-        System.out.println("Enter the String: ");
 
-        // Read the input string from the user
-        Scanner sc = new Scanner(System.in);
-        str = sc.next();
-        sc.close();
-
-        int start = 0; // Pointer for the beginning of the sliding window
-        int maxLength = 0; // Variable to store the maximum length of the substring
-        Set<Character> set = new HashSet<>(); // Set to store unique characters in the current window
-
-        int end = 0; // Pointer for the end of the sliding window
-        while (end < str.length()) {
-            // If the current character is not in the set, add it and update maxLength
-            if (!set.contains(str.charAt(end))) {
-                set.add(str.charAt(end)); // Add the character to the set
-                maxLength = Math.max(maxLength, set.size()); // Update the maxLength if necessary
-                end++; // Move the end pointer to the right
-            } else {
-                // If the current character is already in the set, remove the character at start
-                // pointer
-                set.remove(str.charAt(start));
-                start++; // Move the start pointer to the right
-            }
-        }
-
-        // Output the maximum length of the substring without repeating characters
-        System.out.println("The maximum length is: " + maxLength);
+    public static int max(int a, int b) {
+        return (a > b) ? a : b;
     }
 
     public static void main(String[] args) {
-        maxSubstring(); // Call the method to find and print the maximum substring length
+        Scanner sc = new Scanner(System.in);
+        int key;
+        boolean continueProgram = true;
+
+        while (continueProgram) {
+            System.out.println(Constants.OPTION_ONE);
+            System.out.println(Constants.OPTION_TWO);
+            System.out.println(Constants.ENTER_HERE);
+            key = sc.nextInt();
+            sc.nextLine(); // To consume the newline character
+
+            switch (key) {
+                case 1:
+                    System.out.println(Constants.ENTER_STR);
+                    String s = sc.nextLine();
+                    int len = lengthOfLongestSubstring(s);
+                    System.out.println(Constants.MAX_LENGTH_STRING+ len);
+                    break;
+
+                case 2:
+                    continueProgram = false;
+                    break;
+
+                default:
+                    System.out.println(Constants.DEFAULT);
+                    break;
+            }
+        }
+        sc.close();
+    }
+
+    public static int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        int i = 0, j = 0, mx = 0;
+        int[] arr = new int[255];
+
+        while (j < n) {
+            int ascii = (int) s.charAt(j);
+            if (arr[ascii] == 0) {
+                arr[ascii]++;
+                mx = max(mx, j - i + 1);
+                j++;
+            } else {
+                while (s.charAt(i) != s.charAt(j)) {
+                    arr[(int) s.charAt(i)]--;
+                    i++;
+                }
+                i++;
+                arr[ascii]--;
+            }
+        }
+        return mx;
     }
 }
