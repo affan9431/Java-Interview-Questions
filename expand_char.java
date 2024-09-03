@@ -1,13 +1,13 @@
+/***
+ * Question:  Character Frequency in a String.
+ * Owner name: Affan Sayeed
+ *  expandCharacter() is a  method which take input like a1b2c3 and convert into abbccc.
+ * Date: 3-9-2024
+ */
+
 import java.util.Scanner;
 
 public class ExpandCharacter {
-    /***
-     * Question:  Character Frequency in a String.
-     * Owner name: Affan Sayeed
-     *  expandCharacter() is a  method which take input like a1b2c3 and convert into abbccc.
-     * Date: 3-9-2024
-     */
-
     public static boolean checkUppercaseString(String input) {
         for (char ch : input.toCharArray()) {
             if (Character.isUpperCase(ch)) {
@@ -17,8 +17,6 @@ public class ExpandCharacter {
         return false;
     }
 
-    // expandCharacter() is a function which take string as input and expand
-    // character of string followed by each char.
     public static void expandCharacter() {
 
         Scanner sc = new Scanner(System.in);
@@ -48,8 +46,6 @@ public class ExpandCharacter {
                             char character = input.charAt(i);
                             i++;
 
-                            // check if string does not contain number followed by number then it return
-                            // same string.
                             if (i < input.length() && Character.isDigit(input.charAt(i))) {
 
                                 String number = "";
