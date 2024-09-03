@@ -1,44 +1,88 @@
 import java.util.Scanner;
 
-public class expand_char {
+public class ExpandCharacter {
+    /***
+     * Question:  Character Frequency in a String.
+     * Owner name: Affan Sayeed
+     *  expandCharacter() is a  method which take input like a1b2c3 and convert into abbccc.
+     * Date: 3-9-2024
+     */
+
+    public static boolean checkUppercaseString(String input) {
+        for (char ch : input.toCharArray()) {
+            if (Character.isUpperCase(ch)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // expandCharacter() is a function which take string as input and expand
     // character of string followed by each char.
     public static void expandCharacter() {
+
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the character string like(a23b3c5): ");
-        String input = sc.next();
-        sc.close(); // close the Scanner class to avoid resource leak.
 
-        // StringBuilder is a class which is use to mutate the string to optimize our
-        // code much better.
-        StringBuilder output = new StringBuilder();
-        int i = 0;
+        int key;
+        boolean continueProgram = true;
+        String input;
 
-        while (i < input.length()) {
-            char character = input.charAt(i);
-            i++;
+        while (continueProgram) {
+            System.out.println(Constants.OPTION_ONE);
+            System.out.println(Constants.OPTION_TWO);
+            System.out.println(Constants.ENTER_HERE);
+            key = sc.nextInt();
 
-            // check if string does not conatin number followed by number then it return same string.
-            if (i < input.length() && Character.isDigit(input.charAt(i))) {
-                StringBuilder number = new StringBuilder();
-                while (i < input.length() && Character.isDigit(input.charAt(i))) {
-                    number.append(input.charAt(i));
-                    i++;
-                }
+            switch (key) {
+                case 1:
+                    System.out.println(Constants.ENTER_STRING);
+                    input = sc.next();
 
-                int count = Integer.parseInt(number.toString());
+                    if (checkUppercaseString(input)) {
+                        System.out.println(Constants.LOWERCASE_WARNING);
+                    } else {
+                        int i = 0;
+                        String output = "";
 
-                // For loop to expand character
-                for (int j = 0; j < count; j++) {
-                    output.append(character);
-                }
-            } else {
-                output.append(character);
+                        while (i < input.length()) {
+                            char character = input.charAt(i);
+                            i++;
+
+                            // check if string does not contain number followed by number then it return
+                            // same string.
+                            if (i < input.length() && Character.isDigit(input.charAt(i))) {
+
+                                String number = "";
+                                while (i < input.length() && Character.isDigit(input.charAt(i))) {
+                                    number += input.charAt(i);
+                                    i++;
+                                }
+
+                                int count = Integer.parseInt(number);
+
+                                // For loop to expand character
+                                for (int j = 0; j < count; j++) {
+                                    output += character;
+                                }
+                            } else {
+                                output += character;
+                            }
+                        }
+                        System.out.println(output);
+                        break;
+                    }
+
+                case 2:
+                    continueProgram = false;
+                    break;
+
+                default:
+                    System.out.println(Constants.DEFAULT);
+                    break;
+
             }
         }
-
-        System.out.println(output.toString());
+        sc.close();
 
     }
 
