@@ -1,13 +1,13 @@
+/***
+ * Question:  Number to Words Converter.
+ * Owner name: Affan Sayeed
+ *  num_to_word() is a  method which take number between 1 and 1000 and return into its written English form.
+ * Date: 3-9-2024
+ */
+
 import java.util.Scanner;
 
 public class NumberWordConverter {
-    /***
-     * Question:  Number to Words Converter.
-     * Owner name: Affan Sayeed
-     *  num_to_word() is a  method which take number between 1 and 1000 and return into its written English form.
-     * Date: 3-9-2024
-     */
-
     public static void num_to_word() {
         Scanner sc = new Scanner(System.in);
         int key;
@@ -20,15 +20,14 @@ public class NumberWordConverter {
             key = sc.nextInt();
 
             switch (key) {
-                case 1:
+                case 1 -> {
                     System.out.println(Constants.NUMBER_BETWEEN_ONE_TO_THOUSANDS);
                     int num = sc.nextInt();
-                    String[] ones = { "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+                    String[] ones = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
                             "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
-                            "Eighteen", "Nineteen" };
-                    String[] teens = { "", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty",
-                            "Ninety" };
-
+                            "Eighteen", "Nineteen"};
+                    String[] teens = {"", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty",
+                            "Ninety"};
                     if (num < 1 || num >= 1000) {
                         System.out.println(Constants.OUT_OF_RANGE_WARN);
                     } else {
@@ -46,15 +45,9 @@ public class NumberWordConverter {
                                     + teens[b] + " " + ones[a]);
                         }
                     }
-                    break;
-
-                case 2:
-                    continueProgram = false;
-                    break;
-
-                default:
-                    System.out.println(Constants.DEFAULT);
-                    break;
+                }
+                case 2 -> continueProgram = false;
+                default -> System.out.println(Constants.DEFAULT);
             }
         }
         sc.close();
