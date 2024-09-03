@@ -2,24 +2,15 @@ import java.util.Scanner;
 
 public class PrimeNumber {
 
-    /**
-     * This method checks if a given number is prime.
-     * A prime number is a number greater than 1 that is only divisible by 1 and itself.
-     * 
-     * @return true if the number is prime, false otherwise.
+    /***
+     * Question:  Prime Number Checker
+     * Owner name: Affan Sayeed
+     *  isPrime() is a  method which take number and return if it is prime or not.
+     * Date: 3-9-2024
      */
-    public static boolean isPrime() {
-        int num;
-        System.out.println("Enter a number: ");
-        
-        // Read the input number from the user
-        Scanner sc = new Scanner(System.in);
-        num = sc.nextInt();
-        sc.close();
-        
+    public static boolean isPrime(int num) {
         // Check if the number is less than or equal to 1; if yes, it's not prime
         if (num <= 1) {
-            System.out.println("Number cannot be negative or zero, and it must be greater than 1!");
             return false;
         }
 
@@ -36,11 +27,41 @@ public class PrimeNumber {
     }
 
     public static void main(String[] args) {
-        // Check if the input number is prime and display the appropriate message
-        if (isPrime()) {
-            System.out.println("The number is prime.");
-        } else {
-            System.out.println("The number is not a prime number.");
+        Scanner sc = new Scanner(System.in);
+        int key;
+        boolean continueProgram = true;
+
+        while (continueProgram) {
+            System.out.println(Constants.OPTION_ONE);
+            System.out.println(Constants.OPTION_TWO);
+            System.out.println(Constants.ENTER_HERE);
+            key = sc.nextInt();
+
+            switch (key) {
+                case 1:
+                    System.out.println(Constants.ENTER_NUMBER);
+                    int num = sc.nextInt();
+
+                    if (num <= 1) {
+                        System.out.println(Constants.NEGATIVE_NUMBER_WARN);
+                    } else {
+                        if (isPrime(num)) {
+                            System.out.println("The number " + num + " is prime.");
+                        } else {
+                            System.out.println("The number " + num + " is not a prime number.");
+                        }
+                    }
+                    break;
+
+                case 2:
+                    continueProgram = false;
+                    break;
+
+                default:
+                    System.out.println(Constants.DEFAULT);
+                    break;
+            }
         }
+        sc.close();
     }
 }
