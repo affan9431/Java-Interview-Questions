@@ -1,28 +1,25 @@
+/***
+ * Question:  Prime Number Checker
+ * Owner name: Affan Sayeed
+ *  isPrime() is a  method which take number and return if it is prime or not.
+ * Date: 3-9-2024
+ */
+
 import java.util.Scanner;
 
 public class PrimeNumber {
-
-    /***
-     * Question:  Prime Number Checker
-     * Owner name: Affan Sayeed
-     *  isPrime() is a  method which take number and return if it is prime or not.
-     * Date: 3-9-2024
-     */
     public static boolean isPrime(int num) {
         // Check if the number is less than or equal to 1; if yes, it's not prime
         if (num <= 1) {
             return false;
         }
 
-        // Check divisibility from 2 up to the square root of the number
         for (int i = 2; i <= Math.sqrt(num); i++) {
-            // If the number is divisible by any number other than 1 and itself, it's not prime
             if (num % i == 0) {
                 return false;
             }
         }
 
-        // If no divisors are found, the number is prime
         return true;
     }
 
@@ -38,10 +35,9 @@ public class PrimeNumber {
             key = sc.nextInt();
 
             switch (key) {
-                case 1:
+                case 1 -> {
                     System.out.println(Constants.ENTER_NUMBER);
                     int num = sc.nextInt();
-
                     if (num <= 1) {
                         System.out.println(Constants.NEGATIVE_NUMBER_WARN);
                     } else {
@@ -51,15 +47,9 @@ public class PrimeNumber {
                             System.out.println("The number " + num + " is not a prime number.");
                         }
                     }
-                    break;
-
-                case 2:
-                    continueProgram = false;
-                    break;
-
-                default:
-                    System.out.println(Constants.DEFAULT);
-                    break;
+                }
+                case 2 -> continueProgram = false;
+                default -> System.out.println(Constants.DEFAULT);
             }
         }
         sc.close();
